@@ -10,5 +10,9 @@ language:python # => 1
       - pip install -r requirements.txt
     before_script: # => 6
       - mysql -e 'create database test;' -u root
-    script: # => 7
+    script: # => 7 r
       - python manage.py test
+    deploy:
+      - provider:pages
+      - skip-cleanup:true
+      - github-token:$GITHUB_TOKEN
